@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liver Clinical Trials - MASH Research Canada</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header Styles */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            color: #2c5f7d;
+            font-size: 1.5rem;
+        }
+
+        .logo p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #2c5f7d;
+        }
+
+        nav a.active {
+            color: #2c5f7d;
+            border-bottom: 2px solid #2c5f7d;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #2c5f7d 0%, #4a8fb5 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Section Styles */
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h3 {
+            color: #2c5f7d;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* Trial Cards */
+        .trials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .trial-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .trial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+
+        .trial-card h4 {
+            color: #2c5f7d;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .trial-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .trial-badge {
+            background: #e8f4f8;
+            color: #2c5f7d;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .trial-sponsor {
+            margin: 1rem 0;
+        }
+
+        .trial-sponsor a {
+            color: #2c5f7d;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .trial-sponsor a:hover {
+            text-decoration: underline;
+        }
+
+        .eligibility {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+
+        .eligibility h5 {
+            color: #2c5f7d;
+            margin-bottom: 0.5rem;
+        }
+
+        .eligibility ul {
+            margin-left: 1.5rem;
+        }
+
+        .eligibility li {
+            margin-bottom: 0.3rem;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .faq-item h4 {
+            color: #2c5f7d;
+            margin-bottom: 0.8rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c5f7d;
+            color: white;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            text-decoration: underline;
+        }
+
+        .alert-box {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 5px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+
+            .trials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1>Liver Clinical Trials</h1>
+                <p>A West Coast Gastroenterology Initiative</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+                    <li><a href="#trials" class="nav-link" data-section="trials">Active Trials</a></li>
+                    <li><a href="#faq" class="nav-link" data-section="faq">FAQ</a></li>
+                    <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <h2>WCG Liver Research Centre</h2>
+        <p>Advancing treatment options for liver disease through innovative clinical research</p>
+    </section>
+
+    <section class="section" id="home-content">
+        <div class="section-title">
+            <h3>Clinical Trials: Hope Through Research</h3>
+            <p>Participating in a clinical trial may provide access to innovative treatments</p>
+        </div>
+
+        <div style="max-width: 900px; margin: 0 auto;">
+            <div style="background: white; border-left: 4px solid #2c5f7d; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <h4 style="color: #2c5f7d; margin-bottom: 1rem;">What is a Clinical Trial?</h4>
+                <p style="margin-bottom: 1rem;">A clinical trial is a research study that tests new ways to prevent, detect, treat, or manage various health conditions and diseases. These studies are essential for developing better treatments and improving patient care.</p>
+                <p>For liver disease patients, clinical trials offer the opportunity to access cutting-edge therapies that are not yet widely available, while contributing to medical knowledge that may help future patients.</p>
+            </div>
+
+            <div style="background: #f8f9fa; border-radius: 8px; padding: 2rem; margin-bottom: 2rem;">
+                <h4 style="color: #2c5f7d; margin-bottom: 1rem;">Why Participate in a Clinical Trial?</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+                    <div>
+                        <h5 style="color: #2c5f7d; margin-bottom: 0.5rem;">✓ Access to New Treatments</h5>
+                        <p style="font-size: 0.95rem;">Receive innovative therapies before they become publicly available</p>
+                    </div>
+                    <div>
+                        <h5 style="color: #2c5f7d; margin-bottom: 0.5rem;">✓ Expert Medical Care</h5>
+                        <p style="font-size: 0.95rem;">Close monitoring by specialized healthcare professionals</p>
+                    </div>
+                    <div>
+                        <h5 style="color: #2c5f7d; margin-bottom: 0.5rem;">✓ Contribute to Science</h5>
+                        <p style="font-size: 0.95rem;">Help advance medical knowledge for future patients</p>
+                    </div>
+                    <div>
+                        <h5 style="color: #2c5f7d; margin-bottom: 0.5rem;">✓ No Cost Treatment</h5>
+                        <p style="font-size: 0.95rem;">Study medication and most assessments provided at no charge</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: white; border: 1px solid #e0e0e0; border-radius: 8px; padding: 2rem; margin-bottom: 2rem;">
+                <h4 style="color: #2c5f7d; margin-bottom: 1rem;">Is a Clinical Trial Right for You?</h4>
+                <p style="margin-bottom: 1rem;">Participation in a clinical trial is completely voluntary and is a personal decision. We encourage you to:</p>
+                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                    <li>Take your time to learn about the study and ask questions</li>
+                    <li>Discuss with your family, friends, and healthcare providers</li>
+                    <li>Understand the potential risks and benefits</li>
+                    <li>Review the time commitment and visit schedule</li>
+                    <li>Ask about compensation for time and travel expenses</li>
+                    <li>Know that you can withdraw at any time</li>
+                </ul>
+            </div>
+
+            <div style="background: #e8f4f8; border-radius: 8px; padding: 2rem; text-align: center;">
+                <h4 style="color: #2c5f7d; margin-bottom: 1rem;">Our Research Focus: MASH</h4>
+                <p style="margin-bottom: 1rem;">The WCG Liver Research Centre is currently focused on clinical trials for Metabolic Dysfunction-Associated Steatohepatitis (MASH), previously known as NASH. MASH is a serious liver condition that can lead to cirrhosis and liver failure if left untreated.</p>
+                <p style="font-weight: 600; color: #2c5f7d;">We are actively enrolling patients in multiple Phase 2 and Phase 3 clinical trials investigating promising new treatments for MASH.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="trials" style="display: none;">
+        <div class="section-title">
+            <h3>Currently Enrolling MASH Trials</h3>
+            <p>Participate in groundbreaking research for liver disease treatment</p>
+        </div>
+
+        <div class="alert-box">
+            <strong>Important:</strong> All clinical trials require physician referral and thorough screening. Participation is voluntary and compensation may be provided for time and travel.
+        </div>
+
+        <div class="trials-grid">
+            <div class="trial-card">
+                <h4>Semaglutide for MASH</h4>
+                <div class="trial-meta">
+                    <span class="trial-badge">Phase 3</span>
+                    <span class="trial-badge">Multi-center</span>
+                </div>
+                <div class="trial-sponsor">
+                    <strong>Sponsor:</strong> <a href="https://www.novonordisk.com" target="_blank">Novo Nordisk</a>
+                </div>
+                <p><strong>Study Drug:</strong> Semaglutide 2.4mg once weekly (GLP-1 receptor agonist)</p>
+                <div class="eligibility">
+                    <h5>Key Eligibility Criteria:</h5>
+                    <ul>
+                        <li>Biopsy-confirmed MASH with fibrosis stage F2 or F3</li>
+                        <li>Adults aged 18-75 years</li>
+                        <li>BMI ≥25 kg/m² (≥23 for Asian participants)</li>
+                        <li>NAS score ≥4 with steatosis, ballooning, and inflammation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="trial-card">
+                <h4>Pegozafermin ENLIGHTEN-Fibrosis Study</h4>
+                <div class="trial-meta">
+                    <span class="trial-badge">Phase 3</span>
+                    <span class="trial-badge">Recruiting</span>
+                </div>
+                <div class="trial-sponsor">
+                    <strong>Sponsor:</strong> <a href="https://www.89bio.com" target="_blank">89bio Inc.</a>
+                </div>
+                <p><strong>Study Drug:</strong> Pegozafermin (FGF21 analog) for liver fibrosis reduction</p>
+                <div class="eligibility">
+                    <h5>Key Eligibility Criteria:</h5>
+                    <ul>
+                        <li>MASH with fibrosis stage F2 or F3 confirmed by biopsy</li>
+                        <li>NAS ≥4 with scores of ≥1 in each component</li>
+                        <li>BMI ≥25.0 and <50.0 kg/m²</li>
+                        <li>Stable vitamin E dose (if applicable) for 6 months</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="trial-card">
+                <h4>Resmetirom Long-term Safety Study</h4>
+                <div class="trial-meta">
+                    <span class="trial-badge">Phase 3</span>
+                    <span class="trial-badge">Follow-up</span>
+                </div>
+                <div class="trial-sponsor">
+                    <strong>Sponsor:</strong> <a href="https://www.madrigalpharma.com" target="_blank">Madrigal Pharmaceuticals</a>
+                </div>
+                <p><strong>Study Drug:</strong> Resmetirom (THRβ agonist) - FDA approved in US, under review for Canada</p>
+                <div class="eligibility">
+                    <h5>Key Eligibility Criteria:</h5>
+                    <ul>
+                        <li>MASH with moderate to advanced fibrosis</li>
+                        <li>Previous participants or newly diagnosed patients</li>
+                        <li>Adults 18 years and older</li>
+                        <li>No evidence of decompensated cirrhosis</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="trial-card">
+                <h4>Tirzepatide for MASH</h4>
+                <div class="trial-meta">
+                    <span class="trial-badge">Phase 2b</span>
+                    <span class="trial-badge">Enrolling</span>
+                </div>
+                <div class="trial-sponsor">
+                    <strong>Sponsor:</strong> <a href="https://www.lilly.com" target="_blank">Eli Lilly and Company</a>
+                </div>
+                <p><strong>Study Drug:</strong> Tirzepatide (dual GIP/GLP-1 receptor agonist)</p>
+                <div class="eligibility">
+                    <h5>Key Eligibility Criteria:</h5>
+                    <ul>
+                        <li>MASH diagnosis confirmed by imaging or biopsy</li>
+                        <li>Age 18-75 years</li>
+                        <li>BMI ≥25 kg/m² with metabolic comorbidities</li>
+                        <li>No history of liver transplantation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="trial-card">
+                <h4>Survodutide MASH Trial</h4>
+                <div class="trial-meta">
+                    <span class="trial-badge">Phase 2</span>
+                    <span class="trial-badge">Active</span>
+                </div>
+                <div class="trial-sponsor">
+                    <strong>Sponsor:</strong> <a href="https://www.boehringer-ingelheim.com" target="_blank">Boehringer Ingelheim</a>
+                </div>
+                <p><strong>Study Drug:</strong> Survodutide (dual GLP-1/glucagon receptor agonist)</p>
+                <div class="eligibility">
+                    <h5>Key Eligibility Criteria:</h5>
+                    <ul>
+                        <li>Confirmed MASH with fibrosis F1-F3</li>
+                        <li>Adults aged 18-75 years</li>
+                        <li>Evidence of hepatic steatosis</li>
+                        <li>Willing to undergo MRI-PDFF assessments</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="trial-card">
+                <h4>Efruxifermin HARMONY Study</h4>
+                <div class="trial-meta">
+                    <span class="trial-badge">Phase 2b</span>
+                    <span class="trial-badge">Recruiting</span>
+                </div>
+                <div class="trial-sponsor">
+                    <strong>Sponsor:</strong> <a href="https://www.akerotx.com" target="_blank">Akero Therapeutics</a>
+                </div>
+                <p><strong>Study Drug:</strong> Efruxifermin (FGF21 analog)</p>
+                <div class="eligibility">
+                    <h5>Key Eligibility Criteria:</h5>
+                    <ul>
+                        <li>MASH with liver fibrosis stage F2 or F3</li>
+                        <li>Age 18 years or older</li>
+                        <li>Liver fat content ≥8% by MRI-PDFF</li>
+                        <li>No decompensated liver disease</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="faq" style="display: none;">
+        <div class="section-title">
+            <h3>Frequently Asked Questions</h3>
+            <p>Understanding MASH clinical trial assessments</p>
+        </div>
+
+        <div class="faq-container">
+            <div class="faq-item">
+                <h4>What is a liver biopsy and why is it required?</h4>
+                <p>A liver biopsy is a medical procedure where a small sample of liver tissue is removed for examination under a microscope. In MASH trials, biopsies are essential to confirm the diagnosis, assess the degree of inflammation, fat accumulation, and fibrosis (scarring), and evaluate treatment effectiveness. The procedure is typically performed using a thin needle guided by ultrasound imaging. While generally safe, it carries minor risks including discomfort, bleeding, or infection. Most trial participants have biopsies at baseline and at study completion to measure changes.</p>
+            </div>
+
+            <div class="faq-item">
+                <h4>What is MRI-PDFF (Proton Density Fat Fraction)?</h4>
+                <p>MRI-PDFF is a non-invasive imaging technique that precisely measures the amount of fat in your liver. Unlike traditional ultrasound, MRI-PDFF provides quantitative data, showing the exact percentage of liver fat. This test is painless and involves lying still in an MRI scanner for approximately 15-30 minutes. Many MASH trials use MRI-PDFF as a secondary endpoint to track fat reduction over time without requiring repeated biopsies.</p>
+            </div>
+
+            <div class="faq-item">
+                <h4>What is FibroScan (Transient Elastography)?</h4>
+                <p>FibroScan is a non-invasive ultrasound-based test that measures liver stiffness, which correlates with the degree of fibrosis (scarring). The device sends a painless vibration through the liver while measuring how quickly it travels through the tissue. Stiffer livers indicate more advanced fibrosis. The test takes only 5-10 minutes and requires no special preparation beyond fasting for a few hours. It's commonly used in clinical trials to monitor disease progression or improvement without the need for biopsy.</p>
+            </div>
+
+            <div class="faq-item">
+                <h4>What blood tests are typically performed?</h4>
+                <p>MASH clinical trials routinely monitor several blood markers including liver enzymes (ALT, AST), lipid panels (cholesterol, triglycerides), glucose and HbA1c for diabetes screening, complete blood counts, and kidney function tests. Specialized markers like cytokeratin-18 fragments and fibrosis scores (FIB-4, ELF) may also be measured. These tests help assess liver inflammation, metabolic health, and treatment safety. Blood draws are typically performed every 4-12 weeks during the trial.</p>
+            </div>
+
+            <div class="faq-item">
+                <h4>What is the NAS (NAFLD Activity Score)?</h4>
+                <p>The NAS is a scoring system used by pathologists to evaluate liver biopsy samples. It combines three features: steatosis (fat accumulation, scored 0-3), lobular inflammation (scored 0-3), and hepatocellular ballooning (scored 0-2). The total score ranges from 0-8. A score of 5 or higher typically indicates MASH, while 3-4 is borderline. Most clinical trials require a minimum NAS score for enrollment and use improvements in NAS as a primary endpoint to demonstrate treatment effectiveness.</p>
+            </div>
+
+            <div class="faq-item">
+                <h4>How often are study visits required?</h4>
+                <p>Study visit frequency varies by trial phase and design. Early phase trials may require weekly or biweekly visits initially, while Phase 3 trials typically involve monthly visits during dose escalation, then every 1-3 months during the maintenance phase. Visits usually include vital signs, physical examination, blood work, and adverse event assessment. Some trials also include telehealth check-ins between in-person visits. The total study duration can range from 24 weeks for Phase 2 trials to 240 weeks (approximately 5 years) for long-term Phase 3 studies.</p>
+            </div>
+
+            <div class="faq-item">
+                <h4>Are there dietary or lifestyle requirements?</h4>
+                <p>Most MASH trials encourage healthy lifestyle modifications including balanced diet and regular exercise, as these improve outcomes regardless of treatment. However, dramatic weight loss or starting new weight-loss medications during the trial may be prohibited, as this could interfere with assessing the study drug's effectiveness. Alcohol consumption must typically be minimal or zero. You'll receive detailed guidance from the study team about permitted foods, supplements, and activities.</p>
+            </div>
+
+            <div class="faq-item">
+                <h4>What are placebo-controlled trials?</h4>
+                <p>Many MASH trials are placebo-controlled, meaning some participants receive the active study medication while others receive an inactive placebo (often a saline injection or sugar pill). This design is considered the gold standard for determining whether a treatment truly works. Participants are randomly assigned to groups and neither they nor their doctors know which treatment they're receiving until the study ends (called "blinding"). All participants receive the same standard-of-care counseling on diet and lifestyle, and are monitored with equal care and attention.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="contact" style="display: none;">
+        <div class="section-title">
+            <h3>Interested in Participating?</h3>
+            <p>Contact our research team to learn more</p>
+        </div>
+        <div style="background: #f8f9fa; padding: 2rem; border-radius: 8px; max-width: 600px; margin: 0 auto; text-align: center;">
+            <p style="margin-bottom: 1rem;"><strong>For more information about MASH clinical trials:</strong></p>
+            <p>Please contact your healthcare provider or visit <a href="https://westcoastgi.ca" target="_blank" style="color: #2c5f7d;">West Coast Gastroenterology</a> for a referral.</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">Location: 5th floor, 2775 Laurel Street, Vancouver, BC V5Z 1M9</p>
+        </div>
+    </section>
+
+    <script>
+        // Tab navigation functionality
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Hide all sections
+                document.querySelectorAll('.section').forEach(section => {
+                    section.style.display = 'none';
+                });
+                
+                // Show home content or selected section
+                const sectionId = this.getAttribute('data-section');
+                if (sectionId === 'home') {
+                    document.getElementById('home-content').style.display = 'block';
+                } else {
+                    document.getElementById(sectionId).style.display = 'block';
+                }
+            });
+        });
+    </script>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About This Resource</h4>
+                <p>This website provides information about currently enrolling MASH clinical trials in Canada, operated as part of West Coast Gastroenterology's research initiatives.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="https://westcoastgi.ca" target="_blank">West Coast Gastroenterology</a>
+                <a href="https://clinicaltrials.gov" target="_blank">ClinicalTrials.gov</a>
+                <a href="https://www.liver.ca" target="_blank">Canadian Liver Foundation</a>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <a href="#faq">FAQ</a>
+                <a href="#trials">Active Trials</a>
+                <p style="margin-top: 1rem; font-size: 0.9rem;">© 2026 Liver Clinical Trials. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
